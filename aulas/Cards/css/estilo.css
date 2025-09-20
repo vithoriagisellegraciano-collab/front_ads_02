@@ -1,67 +1,123 @@
+/* reset */
+* { box-sizing: border-box; }
+
+/* container externo */
 .cards {
-        background-color: rgb(172, 131, 211);
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-    }
-    .card {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: white;
-        gap: 15px;
-        width: 250px;
-        border: 1px solid purple;
-        border-radius: 15px;
-        padding: 20px;
-    }
-    .card img {
-        width: 150px;
-    }
-    .titulo {
-        font-size: 30px;
-        font-weight: 700;
-    }
-    .paragrafo {
-        font-size: 14px;
-        line-height: 16px;
-        color: gray;
-    }
-    .container-estrelas {
-        display:flex;
-        justify-content:center;
-        align-items: center;
-        gap: 5px;
-    }
-    li {
-        list-style: none;
-    }
-    svg {
-        width: 25px;
-    }
-    svg:hover {
-        fill:yellow;
-    }
-    .btn-enviar {
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 12px 8px;
-    border-radius: 8px;
-    width: 100%;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    }
-.btn-enviar:hover {
-    background-color: rgb(78, 75, 75);
+  background-color: rgb(172, 131, 211);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 20px;
 }
-.btn-enviar a {
-    color: white;
-    text-decoration: none;
+
+/* card */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* importante: topo / meio / footer fixos */
+  align-items: stretch; /* filhos ocupam largura completa do card */
+  background-color: white;
+  gap: 10px;
+  width: 250px;
+  border: 1px solid purple;
+  border-radius: 15px;
+  padding: 20px;
+  height: 500px; /* mantém todos iguais */
 }
+
+/* imagem uniforme */
+.card img {
+  height: 150px;      /* controla a altura da imagem */
+  width:100%;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 8px auto;
+}
+
+/* Parte do meio que cresce igualmente entre os cards */
+.card .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;                 /* ocupa espaço igual entre imagem e footer */
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 6px;
+}
+
+/* título: altura mínima para uniformizar linhas */
+.titulo {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0;
+  min-height: 4.2rem; /* mantém títulos com espaço parecido */
+  text-align: center;
+}
+
+/* descrição: mesma altura/limite para padronizar */
+.paragrafo {
+  font-size: 14px;
+  line-height: 1.2;
+  color: gray;
+  margin: 0;
+  min-height: 3.2rem; /* ajusta se necessário */
+  text-align: center;
+  overflow: hidden;   /* evita que textos grandes quebrem o layout */
+}
+
+/* preço centralizado e com espaço reservado */
+.preco {
+  margin: 6px 0;
+  font-weight: 700;
+  text-align: center;
+  min-height: 2rem;
+}
+
+/* estrelas - centralizadas e com altura consistente */
+.container-estrelas {
+  display: flex;
+  justify-content:left;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+  min-height: 30px;
+}
+
+/* remover bolinha da lista se usar <li> */
+li { list-style: none; }
+
+/* svg das estrelas */
+svg {
+  width: 22px;
+  height: 22px;
+}
+svg:hover { fill: yellow; }
+
+/* footer do card (botão etc) sempre fixo na base do card */
+.card .card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+/* botão ocupa toda a largura do card */
+.btn-enviar {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 8px;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  color: white;
+}
+.btn-enviar:hover { background-color: rgb(78, 75, 75); }
+.btn-enviar a { color: white; text-decoration: none; display:block; width:100%; height:100%; text-align:center; }
