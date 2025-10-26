@@ -1,31 +1,24 @@
+const lugares = ['Praia', 'Montanha', 'Cruzeiro']
+const mensagem = `
+-- ROTEIRO DE VIAGENS --
+Lugares: ${lugares.join(', ')}
+-----------------`
+alert(mensagem)
 
-   
-        const lugares = ['praia', 'montanha']
-        const mensagem = `
-    -- ROTEIRO DE VIAGENS --
-    Lugares:  ${lugares}
-    -----------------`
-        alert(mensagem) //fake null
-        const escolhaUsuario = prompt(' Para onde deseja viajar? ')
-        if (escolhaUsuario == null || escolhaUsuario == '') {
-            alert('Por favor digite um valor da lista de viagem!')
-        }
-        else {
-            if (lugares.includes(escolhaUsuario)) {
-                if (escolhaUsuario == 'praia') {
-                   // alert('Praia foi escolhido!')
-                   window.location.href = './praia.html'
-                }
-                else if (escolhaUsuario == 'montanha') {
-                    // alert('Montanha foi escolhido!')
-                    window.location.href = './montanha.html'
-                }
-            }
-        }
+const escolhaUsuario = prompt('Para onde deseja viajar?')
 
+if (escolhaUsuario == null || escolhaUsuario.trim() === '') {
+    alert('Por favor, digite um valor da lista de viagem!')
+} else {
+    const escolhaFormatada = escolhaUsuario.trim().toLowerCase()
 
-
-
-
-
-  
+    if (escolhaFormatada === 'praia') {
+        window.location.href = './praia.html'
+    } else if (escolhaFormatada === 'montanha') {
+        window.location.href = './montanha.html'
+    } else if (escolhaFormatada === 'cruzeiro') {
+        window.location.href = './cruzeiro.html'
+    } else {
+        alert('Destino inválido! Escolha entre: Praia, Montanha ou Cruzeiro.')
+    }
+}

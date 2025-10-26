@@ -1,0 +1,71 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilo geral */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  color: white;
+}
+
+/* Estilos específicos por destino */
+body.praia {
+  background: linear-gradient(to bottom, #5fd3ed, #0c9e8b); /* azul oceano */
+}
+
+body.montanha {
+  background: linear-gradient(to bottom, #2b4c0a, #2e2e2e); /* cinza rochoso */
+}
+
+body.cruzeiro {
+  background: linear-gradient(to bottom, #1e3c72, #2a5298); /* azul profundo */
+}
+
+/* Títulos */
+h2 {
+font-family: 'Roboto Slab', serif;
+  font-size: 36px;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+
+h3 {
+  font-family: 'Pacifico', cursive;  font-size: 24px;
+  text-align: center;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Imagem centralizada e responsiva */
+img {
+  max-width: 100%;
+  width: 600px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  display: block;
+  margin: 0 auto;
+}
+
+/* Container de texto */
+.texto {
+  max-width: 800px;
+  text-align: justify;
+  font-size: 18px;
+  line-height: 1.6;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+/* Parágrafos */
+.texto p {
+  margin-bottom: 16px;
+}
