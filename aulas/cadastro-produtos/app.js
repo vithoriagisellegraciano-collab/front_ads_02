@@ -4,46 +4,85 @@
  * 3- Criar um Modelo dinâmico de Card
  * 4- Renderizar o Modelo de Card com os dados armazenados
  * 5- Apagar os dados da lista (último inserido na lista) 
- * 
- * CARD (3 linhas Div com img, h3, p) Classe CSS do card: 'card','imagem-container'
- * Após cada operação imporante Limpar Cache ou Atualizar Card
 */
 
+//Pegando referências
 const formulario = document.querySelector('#form-user')
-
 const btnRemover = document.querySelector('#remover')
 const conteinerCards = document.querySelector('#container-cards')
 
-const itensProdutos = [
-    // {nome: "Prod1", desc:"", url: "http://dfaffdas"},
-    // {nome: "Prod1", desc:"", url: "http://dfaffdas"},
-]
+// Lista de produtos
+const itensProdutos = []
 
-// addEventlistener => Executador de eventos
+// 1) RECEBER E ARMAZENAR OS DADOS
 formulario.addEventListener('submit', function (event) {
     event.preventDefault()
-    // alert('funcionou')
+
     const titulo = document.querySelector('#nome').value.trim()
     const desc = document.querySelector('#desc').value.trim()
     const urlImagem = document.querySelector('#img').value.trim()
-    itensProdutos.push({ titulo, desc, urlImagem })
 
-    console.log(itensProdutos)=
+    // Agora armazena como OBJETO, não valores soltos
+    const novoProduto = {
+        titulo: titulo,
+        desc: desc,
+        urlImagem: urlImagem
+    }
+
+    itensProdutos.push(novoProduto)
+    RenderizarCard()
 
     formulario.reset()
 })
 
-//CRIAR UMA FUNÇAO QUE GERA O TAMPLATE DOC ARD 
-    function criarCardNovo(){
 
-//TODO:criar tags html e retornar 
+// 2) CRIAR TEMPLATE DO CARD
+function criarCardNovo(produto) {
 
-    }
-    // renderizar o card novo na pagina web 
-    function renderizarCard(){
-        // TODO: inserir card atualizado na pagina
-    }
+    // Criar os elementos
+    const card = document.createElement('div')
+    card.classList.add('card')
 
-    btnRemover.addEventListener('click', function() {
-        alert('isso vai acabar deletando o card')
+    const divImg = document.createElement('div')
+    divImg.classList.add('imagem-container')
+
+    const img = document.createElement('img')
+    img.src = produto.urlImagem
+    img.alt = produto.titulo
+
+    const titulo = document.createElement('h3')
+    titulo.textContent = produto.titulo
+
+    const descricao = document.createElement('p')
+    descricao.textContent = produto.desc
+
+    // Montagem
+    divImg.appendChild(img)
+    card.appendChild(divImg)
+    card.appendChild(titulo)
+    card.appendChild(descricao)
+
+    return card
+}
+
+
+// 3) RENDERIZAR NA TELA
+function RenderizarCard() {
+    conteinerCards.innerHTML = "" // limpa antes
+    itensProdutos.forEach(function (produto) {
+        const cardPronto = criarCardNovo(produto)
+        conteinerCards.appendChild(cardPronto)
     })
+}
+
+
+// 4) REMOVER ÚLTIMO ITEM + ATUALIZAR
+btnRemover.addEventListener('click', function () {
+    if (itensProdutos.length === 0) {
+        alert("Não há card para remover!")
+        return
+    }
+
+    itensProdutos.pop()
+    RenderizarCard()
+})
